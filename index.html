@@ -13,19 +13,25 @@
       salary = Number(document.getElementById("salary").value);
       console.log(salary);
       console.log(typeof salary);
-      if (!isNaN(salary)){
+      if (!isNaN(salary) && salary){
         if(salary > 9568){
           if (salary < 50270){
-            salary = salary - 9568
-            old_rate = (salary * 0.12).toFixed(0);
-            new_rate = (salary * 0.1325).toFixed(0);
+            salary = salary - 9568;
+            old_rate = Math.round(salary * 0.12);
+            new_rate = Math.round(salary * 0.1325);
             lose = new_rate-old_rate;
+            new_rate = new_rate.toLocaleString("en-US");
+            old_rate = old_rate.toLocaleString("en-US");
+            lose = lose.toLocaleString("en-US");
             t_alert("Previously you would have paid: <span class='money'>£" + old_rate + "</span><br />You will now pay: <span class='money'>£" + new_rate + "</span><br /> You lose: <span class='money'>£" + lose + "</span>");
           }else{
             ex_salary = salary - 50270;
-            old_rate = (40702*0.12 + ex_salary*0.02).toFixed(0);
-            new_rate = (40702*0.1325 + ex_salary*0.0325).toFixed(0);
+            old_rate = Math.round(40702*0.12 + ex_salary*0.02);
+            new_rate = Math.round(40702*0.1325 + ex_salary*0.0325);
             lose = new_rate-old_rate;
+            new_rate = new_rate.toLocaleString("en-US");
+            old_rate = old_rate.toLocaleString("en-US");
+            lose = lose.toLocaleString("en-US");
             t_alert("Previously you would have paid: <span class='money'>£" + old_rate + "</span><br />You will now pay: <span class='money'>£" + new_rate + "</span><br /> You lose: <span class='money'>£" + lose + "</span>");
           }
         }else{
@@ -90,7 +96,7 @@
   <div class="wrapper">
     <div>
     <h3>How will the rise in National Insurance affect you ?</h3>
-    <input type="text" id="salary"/><input type="button" id="exec" value="Calculate">
+    <input type="text" placeholder="Enter your salary..." id="salary"  /><input type="button" id="exec" value="Calculate">
     <div id="alert"></div>
     </div>
     <script type="text/javascript">
